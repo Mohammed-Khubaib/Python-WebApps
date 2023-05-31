@@ -3,7 +3,7 @@ import numpy as np
 import streamlit as st
 
 
-st.set_page_config("Eamcet WebApp",page_icon=":smile:")
+st.set_page_config("Eamcet WebApp",page_icon="./logo.jpeg")
 st.title("Eamcet Web Option Entry",anchor=False)
 # Inputs to Take :
 # Enter Rank
@@ -25,8 +25,7 @@ C =['OC BOYS', 'OC GIRLS','BC_A BOYS', 'BC_A GIRLS', 'BC_B BOYS', 'BC_B GIRLS', 
 cast = st.selectbox("Select Cast",options=C)
 #-------------------
 # Import Data Set:
-df = pd.read_csv('TSEAMCET2022firstphase.csv',index_col=False)
-df = df.drop('Unnamed: 29',axis=1)
+df = pd.read_csv('EamcetDataSet2022.csv',index_col=False)
 # st.dataframe(df)
 # Define multiple criteria
 c1 = df[cast] >= Rank
