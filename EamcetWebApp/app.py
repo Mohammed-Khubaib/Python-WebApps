@@ -26,6 +26,14 @@ cast = st.selectbox("Select Cast",options=C)
 #-------------------
 # Import Data Set:
 df = pd.read_csv('EamcetDataSet2022.csv',index_col=False)
+# columns = [
+#     'INST CODE', 'INSTITUTE NAME', 'PLACE', 'DIST', 'COED', 'TYPE', 'YEAR OF ESTB',
+#     'BRANCH', 'BRANCH NAME', 'OC BOYS', 'OC GIRLS', 'BC_A BOYS', 'BC_A GIRLS', 'BC_B BOYS',
+#     'BC_B GIRLS', 'BC_C BOYS', 'BC_C GIRLS', 'BC_D BOYS', 'BC_D GIRLS', 'BC_E BOYS',
+#     'BC_E GIRLS', 'SC BOYS', 'SC GIRLS', 'ST BOYS', 'ST GIRLS', 'EWS GEN OU', 'EWS GIRLS OU',
+#     'TUITION FEE', 'AFFILIATED'
+# ]
+# df = pd.read_csv('EamcetDataSet2022.csv', delimiter=',',index_col=False, names=columns)
 # st.dataframe(df)
 # Define multiple criteria
 c1 = df[cast] >= Rank
@@ -35,7 +43,31 @@ c4 = df['BRANCH NAME'].isin(Branch)
 # Combine the criteria using logical operators
 criteria_combined = c1 & c2 & c3 & c4
 filtered_df = df[criteria_combined]
+# st.warning(filtered_df)
+st.divider()
 colList=['INST CODE', 'INSTITUTE NAME', 'PLACE', 'BRANCH', 'BRANCH NAME',cast,'TUITION FEE', 'AFFILIATED']
 # Print the filtered DataFrame
 fdf = filtered_df[colList]
 st.dataframe(fdf)
+st.info(f"Total available options {fdf.shape[0]} ")
+st.warning(f"Unique Colleges availabe : {fdf['INST CODE'].nunique()}")
+# if filtered_df.shape[0] !=0:
+#     colList=['INST CODE', 'INSTITUTE NAME', 'PLACE', 'BRANCH', 'BRANCH NAME',cast,'TUITION FEE', 'AFFILIATED']
+#     # Print the filtered DataFrame
+#     fdf = filtered_df[colList]
+#     st.dataframe(fdf)
+unique_clgs = fdf['INST CODE'].unique()
+st.code(unique_clgs)
+
+
+# O U COLLEGE OF ENGG  HYDERABAD
+# CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY
+# VASAVI COLLEGE OF ENGINEERING
+# M V S R ENGINEERING COLLEGE (AUTONOMOUS)
+# MATRUSRI ENGINEERING COLLEGE
+# M J COLLEGE OF ENGINEERING AND TECHNOLOGY
+# METHODIST COLLEGE OF ENGINEERING AND TECHNOLOGY (AUTONOMOUS)
+# DECCAN COLLEGE OF ENGINEERING AND TECHNOLOGY
+# ISL ENGINEERING COLLEGE
+# LORDS INSTITUTE OF ENGINEERING AND TECHNOLOGY (AUTONOMOUS)
+# NAWAB SHAH ALAM KHAN COLL OF ENGG AND TECH (AUTONOMOUS)
